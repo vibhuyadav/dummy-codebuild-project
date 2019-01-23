@@ -1,13 +1,8 @@
 version: 0.2
 
-env:
-  variables:
-    FOO: "$DEPLOYMENT_STAGE_NAME"
-  parameter-store:
-    CD_ROLE_ARN: "/cicd/em-iam/$FOO/role"
-    DEFAULT_REGION: "/cicd/em-iam/$FOO/region"
-
 phases:
-  build:
+  install:
     commands:
-    - echo $CD_ROLE_ARN
+      - echo Entering Install Phase
+      - apt-get update
+      - aws get-parameters-by-path --path "/cicd/em-iam/$DEPLOTYMENT_STAGE_NAME"
