@@ -5,4 +5,5 @@ phases:
     commands:
       - echo Entering Install Phase
       - apt-get update
-      - aws get-parameters-by-path --path "/cicd/em-iam/$DEPLOTYMENT_STAGE_NAME"
+      - CD_ROLE_ARN=aws ssm get-parameter --name "/cicd/em-iam/$DEPLOYMENT_STAGE_NAME/role"
+      - echo $CD_ROLE_ARN
