@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   parameter-store:
-    CD_ROLE_ARN: "/cicd/em-iam/dev/$DEPLOYMENT_STAGE_NAME/role"
+    CD_ROLE_ARN: "/cicd/em-iam/dev/${DEPLOYMENT_STAGE_NAME}/role"
     DEFAULT_REGION: "/cicd/em-iam/$DEPLOYMENT_STAGE_NAME/region"
 
 phases:
