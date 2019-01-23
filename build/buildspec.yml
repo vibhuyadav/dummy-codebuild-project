@@ -1,4 +1,4 @@
-version 0.2
+version: 0.2
 
 env:
   parameter-store:
@@ -6,6 +6,6 @@ env:
     DEFAULT_REGION: "/cicd/em-iam/$DEPLOYMENT_STAGE_NAME/region"
 
 phases:
-build:
-  commands:
-    - echo 'The CD role is $CD_ROLE_ARN'
+  build:
+    commands:
+    - echo 'The CD role is ${CD_ROLE_ARN}'
