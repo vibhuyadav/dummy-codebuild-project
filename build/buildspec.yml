@@ -1,9 +1,11 @@
 version: 0.2
 
 env:
+  variables:
+    FOO: "$DEPLOYMENT_STAGE_NAME"
   parameter-store:
-    CD_ROLE_ARN: "/cicd/em-iam/$DEPLOYMENT_STAGE_NAME/role"
-    DEFAULT_REGION: "/cicd/em-iam/$DEPLOYMENT_STAGE_NAME/region"
+    CD_ROLE_ARN: "/cicd/em-iam/$FOO/role"
+    DEFAULT_REGION: "/cicd/em-iam/$FOO/region"
 
 phases:
   build:
