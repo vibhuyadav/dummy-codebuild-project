@@ -7,3 +7,4 @@ phases:
       - apt-get update
       - CD_ROLE_ARN=$(aws ssm get-parameter --name "/cicd/em-iam/$DEPLOYMENT_STAGE_NAME/role" --region us-east-1 --with-decryption --output text --query Parameter.Value)
       - echo $CD_ROLE_ARN
+      - printenv
