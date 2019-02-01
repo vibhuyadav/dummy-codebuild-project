@@ -7,6 +7,7 @@ phases:
       - apt-get update
       # Assume role that has access to deploy in RNC Playground account
       - mkdir -p ~/.aws
+      - CD_ROLE_ARN=$(aws ssm get-parameter --name "/cicd/em-iam/$DEPLOYMENT_STAGE_NAME/role" --region us-east-1 --with-decryption --output text --query Parameter.Value)
       - cd ~/.aws
       - echo [profile eng-tooling-cd] > config
       - echo aws_access_key_id="$ENG_TOOLING_CD_KEY" >> config
