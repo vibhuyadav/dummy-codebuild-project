@@ -16,6 +16,7 @@ phases:
       - echo source_profile=eng-tooling-cd >> config
       - echo role_arn=$CD_ROLE_ARN >> config
       - touch this_file_will_be_uploaded
+      - aws sts get-caller-identity
       - aws s3 cp this_file_will_be_uploaded s3://extron-codebuild-artifacts-bucket-engg-tooling-us-east-1/
       - cd -
       - aws cloudformation create-stack --stack-name dev-eop-web-discovery --template-body file://./dev-tenant-management-discovery.template.yaml --parameters ParameterKey=ArtifactBucketName,ParameterValue=extron-codebuild-artifacts-bucket-engg-tooling-us-east-1 ParameterKey=ArtifactBucketKey,ParameterValue=eop-web/6285f60b-6d31-4090-806c-2ca1041dadad/bin/route53-regional-domain.zip ParameterKey=DeploymentSubdomainName,ParameterValue=dev.nortxe.com ParameterKey=DiscoverySubdomain,ParameterValue=eop-discovery ParameterKey=HostedZoneId,ParameterValue=Z3310UY7HXMD0C --region us-east-1 --capabilities CAPABILITY_IAM --timeout-in-minutes 10
