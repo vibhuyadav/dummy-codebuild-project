@@ -17,4 +17,5 @@ phases:
       - echo source_profile=eng-tooling-cd >> config
       - echo role_arn=$CD_ROLE_ARN >> config
       - touch this_file_will_be_uploaded
+      - aws sts get-caller-identity
       - aws s3 cp this_file_will_be_uploaded s3://extron-codebuild-artifacts-bucket-engg-tooling-us-east-1/
