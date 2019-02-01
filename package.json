@@ -1,0 +1,19 @@
+{
+  "name": "eop-web-build",
+  "version": "1.0.0",
+  "description": "The Extron Operations Platform (EOP) Web repo contains both the Operations Services Discovery Service utilized by the Web UI, and the UI for the Operations Platform services.",
+  "devDependencies": {
+    "@extron/build-tools": "^1.0.1-beta.29",
+    "@extron/versioning": "^2.0.0-beta.2"
+  },
+  "scripts": {
+    "cfn": "cfn"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://darcyoblinger@bitbucket.org/extron-electronics/eop-web.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/extron-electronics/eop-web#readme"
+}

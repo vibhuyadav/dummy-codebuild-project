@@ -5,6 +5,9 @@ phases:
     commands:
       - echo Entering Install Phase
       - apt-get update
+      # Create NPM config file
+      - echo registry=${NPM_REGISTRY} > .npmrc
+      - curl -u $RNC_BUILD_ARTIFACTORY_USER:$RNC_BUILD_ARTIFACTORY_PASSWORD ${NPM_AUTH_API} >> .npmrc
       - CD_ROLE_ARN=$(aws ssm get-parameter --name "/cicd/em-iam/$DEPLOYMENT_STAGE_NAME/role" --region us-east-1 --with-decryption --output text --query Parameter.Value)
       # Assume role that has access to deploy in RNC Playground account
       - mkdir -p ~/.aws
@@ -19,3 +22,6 @@ phases:
       - touch this_file_will_be_uploaded
       - aws sts get-caller-identity
       - aws s3 cp this_file_will_be_uploaded s3://extron-codebuild-artifacts-bucket-engg-tooling-us-east-1/
+      - cd - 
+      - npm i
+      - ./node_modules/.bin/cfn update --stack-name dev-eop-web-discovery --template-body ./dev-tenant-management-discovery.template.yaml --params-file ./dev.answers.json --parameters ArtifactBucketName=extron-codebuild-artifacts-bucket-engg-tooling-us-east-1,ArtifactBucketKey=eop-web/6285f60b-6d31-4090-806c-2ca1041dadad/bin/route53-regional-domain.zip --region us-east-1 --timeout 10 
