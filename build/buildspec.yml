@@ -19,6 +19,41 @@ phases:
       - touch this_file_will_be_uploaded
       - aws sts get-caller-identity
       - aws s3 cp this_file_will_be_uploaded s3://extron-codebuild-artifacts-bucket-engg-tooling-us-east-1/
-      - cd -
-      - aws cloudformation create-stack --stack-name dev-eop-web-discovery --template-body file://./dev-tenant-management-discovery.template.yaml --parameters ParameterKey=ArtifactBucketName,ParameterValue=extron-codebuild-artifacts-bucket-engg-tooling-us-east-1 ParameterKey=ArtifactBucketKey,ParameterValue=eop-web/6285f60b-6d31-4090-806c-2ca1041dadad/bin/route53-regional-domain.zip ParameterKey=DeploymentSubdomainName,ParameterValue=dev.nortxe.com ParameterKey=DiscoverySubdomain,ParameterValue=eop-discovery ParameterKey=HostedZoneId,ParameterValue=Z3310UY7HXMD0C --region us-east-1 --capabilities CAPABILITY_IAM --timeout-in-minutes 10
+      - cd
       - echo Finished
+  build:
+    commands:
+      - touch foo
+      - mkdir -p artifacts/bin
+      - touch buildspec.yml && mv builspec.yml artifacts/bin
+      - zip -r cd-deployment-artifacts.zip .
+artifacts:
+  files:
+    - '*'
+  base-directory: artifacts
+  discard-paths: yes
+  secondary-artifacts:
+    dist:
+      files:
+        - '**/*'
+      name: dist
+      base-directory: artifacts/dist
+      discard-paths: yes
+    bin:
+      files:
+        - '**/*'
+      name: bin
+      base-directory: artifacts/bin
+      discard-paths: yes
+    test:
+      files:
+        - '**/*'
+      name: test
+      base-directory: artifacts/test
+      discard-paths: yes
+    docs:
+      files:
+        - '**/*'
+      name: docs
+      base-directory: artifacts/docs
+      discard-paths: yes
