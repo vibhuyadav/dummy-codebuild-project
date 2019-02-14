@@ -5,13 +5,15 @@ phases:
     commands:
       - echo Entering Install Phase
       - apt-get update
+      - BPWD=$(pwd)
       - echo Finished
   build:
     commands:
       - touch foo
-      - mkdir -p artifacts/bin
-      - touch buildspec.yml && mv buildspec.yml artifacts/bin
+      - touch buildspec.yml
       - zip -r cd-deployment-artifacts.zip .
+      - mkdir -p artifacts/bin artifacts/dist artifacts/test artifacts/docs
+      - mv cd-deployment-artifacts.zip $BPWD/artifacts/bin
 artifacts:
   files:
     - '*'
