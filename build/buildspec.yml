@@ -25,7 +25,7 @@ phases:
     commands:
       - touch foo
       - mkdir -p artifacts/bin
-      - touch buildspec.yml && mv builspec.yml artifacts/bin
+      - touch buildspec.yml && mv buildspec.yml artifacts/bin
       - zip -r cd-deployment-artifacts.zip .
 artifacts:
   files:
