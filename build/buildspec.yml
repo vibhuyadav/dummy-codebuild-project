@@ -1,25 +1,10 @@
-﻿version: 0.2
+version: 0.2
 
 phases:
   install:
     commands:
       - echo Entering Install Phase
       - apt-get update
-      # Assume role that has access to deploy in RNC Playground account
-      - mkdir -p ~/.aws
-      - CD_ROLE_ARN=$(aws ssm get-parameter --name "/cicd/em-iam/$DEPLOYMENT_STAGE_NAME/role" --region us-east-1 --with-decryption --output text --query Parameter.Value)
-      - cd ~/.aws
-      - echo [profile eng-tooling-cd] > config
-      - echo aws_access_key_id="$ENG_TOOLING_CD_KEY" >> config
-      - echo aws_secret_access_key="$ENG_TOOLING_CD_SECRET" >> config
-      - echo output=json >> config
-      - echo [default] >> config
-      - echo source_profile=eng-tooling-cd >> config
-      - echo role_arn=$CD_ROLE_ARN >> config
-      - touch this_file_will_be_uploaded
-      - aws sts get-caller-identity
-      - aws s3 cp this_file_will_be_uploaded s3://extron-codebuild-artifacts-bucket-engg-tooling-us-east-1/
-      - cd
       - echo Finished
   build:
     commands:
