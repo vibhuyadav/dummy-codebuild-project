@@ -39,3 +39,10 @@ artifacts:
       name: test
       base-directory: artifacts/test
       discard-paths: yes
+    docs:
+      files:
+        - '**/*'
+      name: docs
+      base-directory: artifacts/docs
+      discard-paths: yes
+    
