@@ -24,25 +24,25 @@ artifacts:
     dist:
       files:
         - '**/*'
-      name: dist
       base-directory: artifacts/dist
       discard-paths: yes
     bin:
       files:
         - '**/*'
-      name: bin
       base-directory: artifacts/bin
       discard-paths: yes
     test:
       files:
         - '**/*'
-      name: test
       base-directory: artifacts/test
       discard-paths: yes
     docs:
       files:
         - '**/*'
-      name: docs
       base-directory: artifacts/docs
       discard-paths: yes
-    
+    lols:
+      files:
+        - '**/*'
+      name: lols
+      discard-paths: yes
