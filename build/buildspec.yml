@@ -11,7 +11,7 @@ phases:
     commands:
       - touch foo
       - touch buildspec.yml
-      - zip -r cd-deployment-artifacts.zip .
+      - zip -qr cd-deployment-artifacts.zip .
       - mkdir -p artifacts/bin artifacts/dist artifacts/test artifacts/docs
       - touch "created_on_$(date +%s)" && find artifacts -type d -maxdepth 1 -exec cp created_on_* {} \;
       - mv cd-deployment-artifacts.zip $BPWD/artifacts/bin
